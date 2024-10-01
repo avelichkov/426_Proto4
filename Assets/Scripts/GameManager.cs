@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public enum Stats
     {
-        RELOAD_TIME = 1,DAMAGE = 2,MOVEMENT_SPEED = 3, SPAWN_RATE = 4
+        RELOAD_TIME,DAMAG,MOVESMENT_SPEE, SPAWN_RATE
     }   
 
     //1:ReloadTime, 

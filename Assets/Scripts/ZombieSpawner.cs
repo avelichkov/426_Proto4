@@ -24,7 +24,7 @@ public class ZombieSpawner : MonoBehaviour
         if (_timer < 0)
         {
             Instantiate(ZombiePrefab,transform);
-            _timer = GameManager.stats[4];
+            _timer = GameManager.stats[3];
         }
     }
 }
