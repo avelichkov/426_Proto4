@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.Play("Music");
+        Time.timeScale = 1.0f;
         TotalKills = 0;
         CurrentKills = 0;
         KillsTillNextLevel = 2;
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         if (levels[index] != 4 && CurrentKills > KillsTillNextLevel)
         {
+            AudioManager.instance.Play("Upgrade");
             levels[index]++;
             stats[index] = 0;
             //AudioManager.instance.Play([statupnoise]);
@@ -124,14 +127,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver()
-    {
+    {   
+        AudioManager.instance.Stop("Music");
+        AudioManager.instance.Play("Game Over");
         StartCoroutine(GameOverEnum());
     }
 
     private IEnumerator GameOverEnum()
     {   
         Time.timeScale = 0f;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         RestartGame();
 
     }
@@ -139,9 +144,11 @@ public class GameManager : MonoBehaviour
 
     public void TimeOut()
     {
+        AudioManager.instance.Stop("Music");
+        AudioManager.instance.Play("Victory");
         Time.timeScale = 0.0f;
-        _timerText.color = Color.red;
-        Camera.TriggerShake(2f);
+        _timerText.color = Color.green;
+        //Camera.TriggerShake(2f);
         _endTriggered = true;
         _score.text = "Kills: " + TotalKills;
         if (TotalKills < 20)
