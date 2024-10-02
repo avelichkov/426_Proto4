@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +23,16 @@ public class GameManager : MonoBehaviour
     public static int KillsTillNextLevel = 2;
     public static int CurrentKills = 0;
 
+    //All the UI Stuff
+    [SerializeField] private TextMeshProUGUI _score;
+    [SerializeField] private TextMeshProUGUI[] _stats;
+    [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private TextMeshProUGUI _nextLevelText; 
     private float _timer = 120;
 
     void Awake() {
+        CurrentKills = 100;
+        ZombieKilled();
         if (instance == null) 
         {
             instance = this;
@@ -50,6 +59,7 @@ public class GameManager : MonoBehaviour
         }
         _timer -= Time.deltaTime;
         float DisplayVal = Mathf.Round(_timer * 10) / 10;
+        _timerText.text = "Time: " + DisplayVal;
     }
 
     public void RestartGame()
@@ -65,12 +75,8 @@ public class GameManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
     }
-    public void PlusReload(){PlusStat(0);}
-    public void PlusDamage(){PlusStat(1);}
-    public void PlusSpeed(){PlusStat(2);}
-    public void PlusSpawnRate(){PlusStat(3);}
 
-    private void PlusStat(int index)
+    public void PlusStat(int index)
     {
         if (levels[index] != 4 && CurrentKills > KillsTillNextLevel)
         {
@@ -79,6 +85,7 @@ public class GameManager : MonoBehaviour
             //AudioManager.instance.Play([statupnoise]);
             CurrentKills -= KillsTillNextLevel;
             KillsTillNextLevel+=1;
+            _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
             if ( index == 0)
             {
                 stats[index] *= 0.5f;
@@ -91,13 +98,16 @@ public class GameManager : MonoBehaviour
             {
                 stats[index] *= 2;
             }
+            _stats[index].text = GetBar(levels[index]);
         }
     }
 
-    public static void ZombieKilled()
+    public void ZombieKilled()
     {
         TotalKills++;
         CurrentKills++;
+        _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
+        _score.text = TotalKills.ToString();
     }
 
     public static void GameOver()
@@ -108,6 +118,23 @@ public class GameManager : MonoBehaviour
     public static void TimeOut()
     {
 
+    }
+
+    private String GetBar(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                return "[ ■ ] [ - ] [ - ] [ - ]";
+            case 2:
+                return "[ ■ ] [ ■ ] [ - ] [ - ]";
+            case 3: 
+                return "[ ■ ] [ ■ ] [ ■ ] [ - ]";
+            case 4: 
+                return "[ ■ ] [ ■ ] [ ■ ] [ ■ ]";
+            default:
+                return "[ ■ ] [ - ] [ - ] [ - ]";
+        }
     }
 }
 
