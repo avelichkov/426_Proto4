@@ -13,7 +13,7 @@ public class ZombieSpawner : MonoBehaviour
         for (int i = 0; i < 100; i++)
         {
             //Enable this code to get a feel for the range in which the zombie spawn
-            //Instantiate(ZombiePrefab,transform);
+            //Instantiate(ZombiePrefab, transform);
         }
     }
 
@@ -23,7 +23,7 @@ public class ZombieSpawner : MonoBehaviour
         _timer -= Time.deltaTime;
         if (_timer < 0)
         {
-            Instantiate(ZombiePrefab,transform);
+            Instantiate(ZombiePrefab, transform);
             _timer = GameManager.stats[3];
         }
     }

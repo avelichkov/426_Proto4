@@ -18,7 +18,7 @@ public class BulletShot : MonoBehaviour
         Vector3 rot = transform.position - mousePos;
         rb.velocity = new Vector2(dir.x, dir.y).normalized * force;
         float angle = Mathf.Atan2(rot.y, rot.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle + 90);
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     // Update is called once per frame
