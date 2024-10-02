@@ -15,11 +15,13 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        AudioManager.instance.Play("Laser Shot");
     }
 
     // Update is called once per frame
     void Update()
     {
+        cooldown = GameManager.stats[0];
         mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = mousePos - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

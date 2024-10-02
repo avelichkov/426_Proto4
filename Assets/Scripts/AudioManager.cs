@@ -9,11 +9,12 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     public static AudioManager instance;
 
-    void Awake() {
-        if (instance == null) 
+    void Awake()
+    {
+        if (instance == null)
         {
             instance = this;
-        } 
+        }
         else
         {
             Destroy(gameObject);
@@ -45,8 +46,8 @@ public class AudioManager : MonoBehaviour
         if (s != null)
         {
             s.source.Play();
-            Debug.Log("play");
-        } 
+            //Debug.Log("play");
+        }
         else
         {
             Debug.LogWarning("Could not find sound: " + name);
@@ -59,7 +60,7 @@ public class AudioManager : MonoBehaviour
         if (s != null)
         {
             s.source.Stop();
-        } 
+        }
         else
         {
             Debug.LogWarning("Could not find sound: " + name);

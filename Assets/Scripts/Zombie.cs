@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
     private GameObject player;
     public float speed;
+    private Collider2D zombieCol;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,9 +31,24 @@ public class Zombie : MonoBehaviour
     {
         Vector2 dir = player.transform.position;
         dir.Normalize();
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.position = Vector2.MoveTowards(this.transform.position,
         player.transform.position, speed * Time.deltaTime);
-        transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            GameManager.instance.ZombieKilled();
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            //Debug.Log("Colliding");
+            GameManager.instance.GameOver();
+        }
+    }
+
 }

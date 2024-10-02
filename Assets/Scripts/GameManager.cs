@@ -15,36 +15,37 @@ public class GameManager : MonoBehaviour
 
     public enum Stats
     {
-        RELOAD_TIME,DAMAGE,MOVEMENT_SPEED, SPAWN_RATE
-    }   
+        RELOAD_TIME, DAMAGE, MOVEMENT_SPEED, SPAWN_RATE
+    }
 
     //1:ReloadTime, 
     public static int[] levels;
     public static float[] stats;
     public static int TotalKills;
     public static int KillsTillNextLevel;
-    public static int CurrentKills ;
+    public static int CurrentKills;
 
     //All the UI Stuff
     [SerializeField] private TextMeshProUGUI _score;
     [SerializeField] private TextMeshProUGUI[] _stats;
     [SerializeField] private TextMeshProUGUI _timerText;
-    [SerializeField] private TextMeshProUGUI _nextLevelText; 
-    private float _timer = 1f;
+    [SerializeField] private TextMeshProUGUI _nextLevelText;
+    private float _timer = 120f;
     private bool _endTriggered = false;
 
-    void Awake() {
-        if (instance == null) 
+    void Awake()
+    {
+        if (instance == null)
         {
             instance = this;
-        } 
+        }
         else
         {
             Destroy(gameObject);
         }
         //DontDestroyOnLoad(gameObject);
-        levels = new int[]{1,1,1,1};
-        stats = new float[]{0.5f,1f,1f,1f};
+        levels = new int[] { 1, 1, 1, 1 };
+        stats = new float[] { 0.3f, 1f, 5f, 1f };
     }
 
     void Start()
@@ -86,9 +87,9 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
         // For debugging purposes in the editor
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#endif
     }
 
     public void PlusStat(int index)
@@ -100,19 +101,25 @@ public class GameManager : MonoBehaviour
             stats[index] = 0;
             //AudioManager.instance.Play([statupnoise]);
             CurrentKills -= KillsTillNextLevel;
-            KillsTillNextLevel+=1;
+            KillsTillNextLevel += 1;
             _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
-            if ( index == 0)
+            if (index == 0)
             {
+                Debug.Log(index);
+                Debug.Log(stats[index]);
                 stats[index] *= 0.5f;
             }
-            if (index == 1)
+            else if (index == 1)
             {
-                stats[index] +=1;
+                Debug.Log(index);
+                Debug.Log(stats[index]);
+                stats[index] += 1;
             }
             else
             {
-                stats[index] *= 2;
+                stats[index] *= 2.0f;
+                Debug.Log(index);
+                Debug.Log(stats[index]);
             }
             _stats[index].text = GetBar(levels[index]);
         }
@@ -120,6 +127,7 @@ public class GameManager : MonoBehaviour
 
     public void ZombieKilled()
     {
+        AudioManager.instance.Play("Kill");
         TotalKills++;
         CurrentKills++;
         _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
@@ -127,20 +135,20 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver()
-    {   
+    {
         AudioManager.instance.Stop("Music");
         AudioManager.instance.Play("Game Over");
         StartCoroutine(GameOverEnum());
     }
 
     private IEnumerator GameOverEnum()
-    {   
+    {
         Time.timeScale = 0f;
         yield return new WaitForSeconds(4f);
         RestartGame();
 
     }
-    
+
 
     public void TimeOut()
     {
@@ -173,9 +181,9 @@ public class GameManager : MonoBehaviour
                 return "[ ■ ] [ - ] [ - ] [ - ]";
             case 2:
                 return "[ ■ ] [ ■ ] [ - ] [ - ]";
-            case 3: 
+            case 3:
                 return "[ ■ ] [ ■ ] [ ■ ] [ - ]";
-            case 4: 
+            case 4:
                 return "[ ■ ] [ ■ ] [ ■ ] [ ■ ]";
             default:
                 return "[ ■ ] [ - ] [ - ] [ - ]";

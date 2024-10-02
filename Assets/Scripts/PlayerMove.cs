@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f; // Speed of the player movement
-
+    //[SerializeField] private float moveSpeed = 5f; // Speed of the player movement
+    private float startSpeed;
     public Rigidbody2D rb; // Reference to the Rigidbody2D (for 2D games)
     private float currentSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentSpeed = moveSpeed;
+        currentSpeed = GameManager.stats[1];
     }
 
     // Update is called once per frame
@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviour
 
     void MovePlayer()
     {
+        currentSpeed = GameManager.stats[1];
         // Get input from WASD keys
         float moveX = Input.GetAxis("Horizontal"); // A/D or Left/Right arrows
         float moveY = Input.GetAxis("Vertical");   // W/S or Up/Down arrows
@@ -31,6 +32,7 @@ public class PlayerMove : MonoBehaviour
         Vector2 movement = new Vector2(moveX, moveY);
 
         // Apply movement to the Rigidbody2D
+        //Debug.Log(currentSpeed);
         rb.velocity = movement * currentSpeed;
     }
 }
