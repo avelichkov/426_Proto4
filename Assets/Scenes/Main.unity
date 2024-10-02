@@ -1396,8 +1396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45, y: 478}
-  m_SizeDelta: {x: 556.8348, y: 102.3733}
+  m_AnchoredPosition: {x: 22.94751, y: 465.5}
+  m_SizeDelta: {x: 512.7299, y: 127.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1215328948
 MonoBehaviour:
@@ -1419,7 +1419,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1453,8 +1455,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1482,7 +1484,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 940.54065, y: 0, z: -640.0548, w: -73.70807}
+  m_margin: {x: -312.36682, y: 0, z: -632.7041, w: -161.91815}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2303,6 +2305,7 @@ GameObject:
   - component: {fileID: 1708563547}
   - component: {fileID: 1708563546}
   - component: {fileID: 1708563545}
+  - component: {fileID: 1708563548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2384,6 +2387,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708563548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708563544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fdbd3858cb3f3e46b3366b41c7d5bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1768164788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,6 +2966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a568a6989089f854398210b69abcabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 1708563548}
   _score: {fileID: 1215328948}
   _stats:
   - {fileID: 413853261}
