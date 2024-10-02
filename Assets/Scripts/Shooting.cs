@@ -6,6 +6,11 @@ public class Shooting : MonoBehaviour
 {
     private Camera mainCamera;
     private Vector3 mousePos;
+    public GameObject bullet;
+    public Transform bulletTransform;
+    public bool canFire;
+    private float timer;
+    public float cooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +25,20 @@ public class Shooting : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         //rotating the shooting direction
         transform.rotation = Quaternion.Euler(0, 0, angle);
+        if (!canFire)
+        {
+            timer += Time.deltaTime;
+            if (timer > cooldown)
+            {
+                canFire = true;
+                timer = 0;
+            }
 
+        }
+        if (Input.GetMouseButton(0) && canFire)
+        {
+            canFire = false;
+            Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+        }
     }
 }
