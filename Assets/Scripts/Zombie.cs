@@ -18,10 +18,11 @@ public class Zombie : MonoBehaviour
     }
     private Vector2 GetPosition()
     {
+        Vector2 playerPos = GameObject.Find("Player").transform.position;
         float angle = Random.Range(0f, 2 * Mathf.PI);
-        float radius = 14.0f;
-        float xPos = Mathf.Cos(angle) * radius;
-        float yPos = Mathf.Sin(angle) * radius;
+        float radius = 15.0f;
+        float xPos = playerPos.x + Mathf.Cos(angle) * radius;
+        float yPos = playerPos.y + Mathf.Sin(angle) * radius;
         return new Vector2(xPos, yPos);
     }
 
@@ -41,7 +42,8 @@ public class Zombie : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             GameManager.instance.ZombieKilled();
-            Destroy(other.gameObject);
+            BulletShot bullet = other.gameObject.GetComponent<BulletShot>();
+            bullet.TakeDamage();
             Destroy(this.gameObject);
         }
         if (other.gameObject.tag == "Player")

@@ -15,7 +15,6 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        AudioManager.instance.Play("Laser Shot");
     }
 
     // Update is called once per frame

@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12e6af93c5e92e4e9c9eaa5a00caab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZombiePrefab: {fileID: 4977792440997254438, guid: 9397ebd2cfb0184448525b01c81891db, type: 3}
+  ZombiePrefab: {fileID: 8936637609731198449, guid: 5e8daee4e17380249a69cba1386cb862, type: 3}
 --- !u!4 &1082769140
 Transform:
   m_ObjectHideFlags: 0
@@ -2697,7 +2697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a568a6989089f854398210b69abcabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 1708563548}
+  Camera: {fileID: 0}
   _score: {fileID: 1215328948}
   _stats:
   - {fileID: 413853261}

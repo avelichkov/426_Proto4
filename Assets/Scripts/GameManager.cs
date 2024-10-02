@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public enum Stats
     {
-        RELOAD_TIME, DAMAGE, MOVEMENT_SPEED, SPAWN_RATE
+        RELOAD_TIME, MOVEMENT_SPEED,DAMAGE, SPAWN_RATE
     }
 
     //1:ReloadTime, 
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         }
         //DontDestroyOnLoad(gameObject);
         levels = new int[] { 1, 1, 1, 1 };
-        stats = new float[] { 0.3f, 1f, 5f, 1f };
+        stats = new float[] { 1f, 1f, 1f, 0.7f };
     }
 
     void Start()
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         TotalKills = 0;
         CurrentKills = 0;
-        KillsTillNextLevel = 2;
+        KillsTillNextLevel = 3;
     }
 
     // Update is called once per frame
@@ -94,26 +94,23 @@ public class GameManager : MonoBehaviour
 
     public void PlusStat(int index)
     {
-        if (levels[index] != 4 && CurrentKills > KillsTillNextLevel)
+        if (levels[index] != 4 && CurrentKills >= KillsTillNextLevel)
         {
             AudioManager.instance.Play("Upgrade");
             levels[index]++;
-            stats[index] = 0;
-            //AudioManager.instance.Play([statupnoise]);
             CurrentKills -= KillsTillNextLevel;
-            KillsTillNextLevel += 1;
+            KillsTillNextLevel = (int)(KillsTillNextLevel * 1.5f);
+            if (CurrentKills <= KillsTillNextLevel) _nextLevelText.color = Color.white;
             _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
-            if (index == 0)
+            if (index == 0 || index == 3)
             {
                 Debug.Log(index);
                 Debug.Log(stats[index]);
                 stats[index] *= 0.5f;
             }
-            else if (index == 1)
+            else if (index == 2)
             {
-                Debug.Log(index);
-                Debug.Log(stats[index]);
-                stats[index] += 1;
+                stats[index] += 1f;
             }
             else
             {
@@ -130,6 +127,7 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.Play("Kill");
         TotalKills++;
         CurrentKills++;
+        if (CurrentKills >= KillsTillNextLevel) _nextLevelText.color = Color.green;
         _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
         _score.text = TotalKills.ToString();
     }
@@ -138,6 +136,8 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.Stop("Music");
         AudioManager.instance.Play("Game Over");
+        _score.color = Color.red;
+        _score.text = "You Lose, you get nothing, good day sir.";
         StartCoroutine(GameOverEnum());
     }
 
@@ -159,11 +159,11 @@ public class GameManager : MonoBehaviour
         //Camera.TriggerShake(2f);
         _endTriggered = true;
         _score.text = "Kills: " + TotalKills;
-        if (TotalKills < 20)
+        if (TotalKills < 500)
         {
             _score.text += " | 1/3 Stars";
         }
-        else if (TotalKills < 40)
+        else if (TotalKills < 750)
         {
             _score.text += " | 2/3 Stars";
         }
