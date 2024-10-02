@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _score;
     [SerializeField] private TextMeshProUGUI[] _stats;
     [SerializeField] private TextMeshProUGUI _timerText;
-    [SerializeField] private TextMeshProUGUI _nextLevelText;
+    [SerializeField] private TextMeshProUGUI _nextLevelText; 
     private float _timer = 120f;
     private bool _endTriggered = false;
 
