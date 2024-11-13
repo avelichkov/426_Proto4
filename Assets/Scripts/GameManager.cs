@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     private float _timer = 120f;
     private bool _endTriggered = false;
 
+    //Game feel stuff
+    public PlayerEffects playereff;
+
     void Awake()
     {
         if (instance == null)
@@ -80,6 +83,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
         _endTriggered = false;
     }
 
@@ -136,6 +140,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.Stop("Music");
         AudioManager.instance.Play("Game Over");
+        playereff.DeathEffects();
         _score.color = Color.red;
         _score.text = "You Lose, you get nothing, good day sir.";
         StartCoroutine(GameOverEnum());
@@ -144,7 +149,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOverEnum()
     {
         Time.timeScale = 0f;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSecondsRealtime(4f); //changed this to realtime so that it works at timescale 0
         RestartGame();
 
     }
