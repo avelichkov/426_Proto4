@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public enum Stats
     {
-        RELOAD_TIME, MOVEMENT_SPEED,DAMAGE, SPAWN_RATE
+        RELOAD_TIME, MOVEMENT_SPEED, DAMAGE, SPAWN_RATE
     }
 
     //1:ReloadTime, 
@@ -71,6 +71,13 @@ public class GameManager : MonoBehaviour
         {
             QuitGame();
         }
+
+        int keyUpgrade = GetNumKeyDown();
+        if (keyUpgrade != -1)
+        {
+            PlusStat(keyUpgrade-1);
+        }
+
         _timer -= Time.deltaTime;
         if (_timer <= 0 && !_endTriggered)
         {
@@ -193,6 +200,15 @@ public class GameManager : MonoBehaviour
             default:
                 return "[ ■ ] [ - ] [ - ] [ - ]";
         }
+    }
+
+    private int GetNumKeyDown()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) return 1;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) return 2;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) return 3;
+        if (Input.GetKeyDown(KeyCode.Alpha4)) return 4;
+        return -1;
     }
 }
 
