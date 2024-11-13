@@ -21,8 +21,9 @@ public class BulletShot : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bulletCol = GetComponent<Collider2D>();
         mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 dir = mousePos - transform.position;
-        Vector3 rot = transform.position - mousePos;
+        Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
+        Vector3 dir = mousePos - playerPos;
+        Vector3 rot = playerPos - mousePos;
         rb.velocity = new Vector2(dir.x, dir.y).normalized * force;
         float angle = Mathf.Atan2(rot.y, rot.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);

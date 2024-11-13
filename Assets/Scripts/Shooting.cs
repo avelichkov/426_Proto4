@@ -36,7 +36,7 @@ public class Shooting : MonoBehaviour
             }
 
         }
-        if (Input.GetMouseButton(0) && canFire)
+        if (canFire)
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
