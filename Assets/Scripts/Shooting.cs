@@ -43,6 +43,7 @@ public class Shooting : MonoBehaviour
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            playereff.muzzleFlash();
             StartCoroutine(playereff.shootSquashStretch(0.1f));
         }
     }

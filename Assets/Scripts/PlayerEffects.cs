@@ -9,9 +9,10 @@ public class PlayerEffects : MonoBehaviour
 
 
     public GameObject sprite;
-    private float stretch = 0.12f;
-    private float stretchtarget = 0.03f;
+    private float stretch = 0.7f;
+    private float stretchtarget = 0.3f;
 
+    public ParticleSystem gunflash;
 
     public void DeathEffects()
     {
@@ -23,20 +24,20 @@ public class PlayerEffects : MonoBehaviour
 
     public IEnumerator shootSquashStretch(float timeWaited)
     {
-        float currentstretch = 0.15f;
+        float currentstretch = 1f;
         //squash -> 30 frames
         while(currentstretch > stretch)
         {
             currentstretch -= (stretchtarget / 30);
-            sprite.transform.localScale = new Vector3(currentstretch, currentstretch, 0.15f);
+            sprite.transform.localScale = new Vector3(currentstretch, 0.7f * currentstretch, 0.3f);
             yield return new WaitForSecondsRealtime(timeWaited / 30);
         }
 
         //return
-        while(currentstretch < 0.15f)
+        while(currentstretch < 1f)
         {
             currentstretch += (stretchtarget / 30);
-            sprite.transform.localScale = new Vector3(currentstretch, currentstretch, 0.15f);
+            sprite.transform.localScale = new Vector3(currentstretch, 0.7f * currentstretch, 0.3f);
             yield return new WaitForSecondsRealtime(timeWaited / 30);
         }
 
@@ -49,5 +50,13 @@ public class PlayerEffects : MonoBehaviour
         
     }
 
+    public void muzzleFlash()
+    {
+        //Vector3 shotAngle = 
+        gunflash.transform.rotation = GameObject.Find("RotationPoint").transform.rotation;
+        gunflash.transform.Rotate(0, 90, 0);
+        gunflash.Play();
+        
+    }
 
 }
