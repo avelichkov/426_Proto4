@@ -271,6 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 6863189245013598081, guid: 83de54ef7cb2dd541b7874ca7f420d0a, type: 3}
+  sprite: {fileID: 2428201768649827087}
+  stretch: 0.1
 --- !u!1 &4604025941931315735
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,10 +11,13 @@ public class Shooting : MonoBehaviour
     public bool canFire;
     private float timer;
     public float cooldown;
+
+    private PlayerEffects playereff;
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        playereff = GetComponentInParent<PlayerEffects>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class Shooting : MonoBehaviour
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            StartCoroutine(playereff.shootSquashStretch(0.1f));
         }
     }
 }
