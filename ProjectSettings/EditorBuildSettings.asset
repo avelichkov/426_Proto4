@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainCopyAlex.unity
-    guid: b157d700be5f26d45994ca6f132641ed
+    path: Assets/Scenes/MainScene.unity
+    guid: 3b22f52854df0dd44bada1fe44752897
   m_configObjects: {}

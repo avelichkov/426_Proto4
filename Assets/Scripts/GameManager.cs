@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void PlusStat(int index)
     {
+        Debug.Log("increased stat");
         if (levels[index] != 4 && CurrentKills >= KillsTillNextLevel)
         {
             AudioManager.instance.Play("Upgrade");
