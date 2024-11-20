@@ -51,7 +51,7 @@ public class Zombie : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //Debug.Log("Colliding");
-            //GameManager.instance.GameOver();
+            GameManager.instance.GameOver();
         }
     }
 
