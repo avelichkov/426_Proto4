@@ -8,6 +8,7 @@ public class Zombie : MonoBehaviour
     private GameObject player;
     public float speed;
     private Collider2D zombieCol;
+    public GameObject WispPrefab;
 
     // Start is called before the first frame update
     void Awake()
@@ -43,7 +44,9 @@ public class Zombie : MonoBehaviour
             GameManager.instance.ZombieKilled();
             BulletShot bullet = other.gameObject.GetComponent<BulletShot>();
             bullet.TakeDamage();
+            Instantiate(WispPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+
         }
         if (other.gameObject.tag == "Player")
         {

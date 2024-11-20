@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _score;
     [SerializeField] private TextMeshProUGUI[] _stats;
     [SerializeField] private TextMeshProUGUI _timerText;
-    [SerializeField] private TextMeshProUGUI _nextLevelText; 
+    [SerializeField] private TextMeshProUGUI _nextLevelText;
     private float _timer = 120f;
     private bool _endTriggered = false;
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         int keyUpgrade = GetNumKeyDown();
         if (keyUpgrade != -1)
         {
-            PlusStat(keyUpgrade-1);
+            PlusStat(keyUpgrade - 1);
         }
 
         _timer -= Time.deltaTime;
@@ -137,6 +137,10 @@ public class GameManager : MonoBehaviour
     public void ZombieKilled()
     {
         AudioManager.instance.Play("Kill");
+    }
+    public void WispCollected()
+    {
+        AudioManager.instance.Play("Collect");
         TotalKills++;
         CurrentKills++;
         if (CurrentKills >= KillsTillNextLevel) _nextLevelText.color = Color.green;
