@@ -10,7 +10,7 @@ public class PlayerEffects : MonoBehaviour
 
     public GameObject sprite;
     private float stretch = 0.7f;
-    private float stretchtarget = 0.3f;
+    private float stretchtarget = 1f;
 
     public ParticleSystem gunflash;
 
@@ -29,7 +29,7 @@ public class PlayerEffects : MonoBehaviour
         while(currentstretch > stretch)
         {
             currentstretch -= (stretchtarget / 30);
-            sprite.transform.localScale = new Vector3(currentstretch, 0.7f * currentstretch, 0.3f);
+            sprite.transform.localScale = new Vector3(currentstretch, 0.7f /* * currentstretch*/, 0.3f);
             yield return new WaitForSecondsRealtime(timeWaited / 30);
         }
 
@@ -37,7 +37,7 @@ public class PlayerEffects : MonoBehaviour
         while(currentstretch < 1f)
         {
             currentstretch += (stretchtarget / 30);
-            sprite.transform.localScale = new Vector3(currentstretch, 0.7f * currentstretch, 0.3f);
+            sprite.transform.localScale = new Vector3(currentstretch, 0.7f /* * currentstretch*/, 0.3f);
             yield return new WaitForSecondsRealtime(timeWaited / 30);
         }
 

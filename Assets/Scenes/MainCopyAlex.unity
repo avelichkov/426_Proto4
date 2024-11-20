@@ -2271,6 +2271,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604877731}
   m_CullTransparentMesh: 1
+--- !u!198 &1665235636 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8493827901506830712, guid: 3ed47858c34f11c479e22834574d92d6, type: 3}
+  m_PrefabInstance: {fileID: 4321196147051488995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1690206565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2428201768649827087, guid: 3ed47858c34f11c479e22834574d92d6, type: 3}
@@ -3153,6 +3158,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2191650622925191455, guid: 3ed47858c34f11c479e22834574d92d6, type: 3}
+      propertyPath: gunflash
+      value: 
+      objectReference: {fileID: 1665235636}
     - target: {fileID: 2428201768649827087, guid: 3ed47858c34f11c479e22834574d92d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

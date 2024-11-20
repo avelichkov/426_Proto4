@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,12 +27,14 @@ public class GameManager : MonoBehaviour
     public static int CurrentKills;
 
     //All the UI Stuff
+    [SerializeField] private GameObject _upgrades;
     [SerializeField] private TextMeshProUGUI _score;
     [SerializeField] private TextMeshProUGUI[] _stats;
     [SerializeField] private TextMeshProUGUI _timerText;
-    [SerializeField] private TextMeshProUGUI _nextLevelText;
+    //[SerializeField] private TextMeshProUGUI _nextLevelText;
     private float _timer = 120f;
     private bool _endTriggered = false;
+    private PlayerMove player;
 
     //Game feel stuff
     public PlayerEffects playereff;
@@ -53,6 +56,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player").transform.GetComponent<PlayerMove>();
+        if (GameObject.FindWithTag("Player") == null) Debug.Log("no player obj");
+        if (player == null) Debug.Log("no player");
         AudioManager.instance.Play("Music");
         Time.timeScale = 1.0f;
         TotalKills = 0;
@@ -72,11 +78,11 @@ public class GameManager : MonoBehaviour
             QuitGame();
         }
 
-        int keyUpgrade = GetNumKeyDown();
-        if (keyUpgrade != -1)
-        {
-            PlusStat(keyUpgrade - 1);
-        }
+        // int keyUpgrade = GetNumKeyDown();
+        // if (keyUpgrade != -1)
+        // {
+        //     PlusStat(keyUpgrade - 1);
+        // }
 
         _timer -= Time.deltaTime;
         if (_timer <= 0 && !_endTriggered)
@@ -106,14 +112,15 @@ public class GameManager : MonoBehaviour
     public void PlusStat(int index)
     {
         Debug.Log("increased stat");
-        if (levels[index] != 4 && CurrentKills >= KillsTillNextLevel)
+        if (CurrentKills >= KillsTillNextLevel)
         {
             AudioManager.instance.Play("Upgrade");
             levels[index]++;
             CurrentKills -= KillsTillNextLevel;
             KillsTillNextLevel = (int)(KillsTillNextLevel * 1.5f);
-            if (CurrentKills <= KillsTillNextLevel) _nextLevelText.color = Color.white;
-            _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
+            player.UpdateColor(0f);
+            //if (CurrentKills <= KillsTillNextLevel) _nextLevelText.color = Color.white;
+            //_nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
             if (index == 0 || index == 3)
             {
                 Debug.Log(index);
@@ -132,6 +139,7 @@ public class GameManager : MonoBehaviour
             }
             _stats[index].text = GetBar(levels[index]);
         }
+        ToggleUpgrades(false);
     }
 
     public void ZombieKilled()
@@ -142,9 +150,9 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.Play("Collect");
         TotalKills++;
-        CurrentKills++;
-        if (CurrentKills >= KillsTillNextLevel) _nextLevelText.color = Color.green;
-        _nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
+        if (KillsTillNextLevel > CurrentKills) CurrentKills++;
+        player.UpdateColor((float)CurrentKills/KillsTillNextLevel);
+        if (CurrentKills >= KillsTillNextLevel) ToggleUpgrades(true);
         _score.text = TotalKills.ToString();
     }
 
@@ -158,11 +166,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameOverEnum());
     }
 
+    public void ToggleUpgrades(bool active)
+    {
+        _upgrades.SetActive(active);
+    }
+
     private IEnumerator GameOverEnum()
     {
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(4f); //changed this to realtime so that it works at timescale 0
-        RestartGame();
+        //RestartGame();
 
     }
 
