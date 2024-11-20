@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.Play("Upgrade");
             levels[index]++;
             CurrentKills -= KillsTillNextLevel;
-            KillsTillNextLevel = (int)(KillsTillNextLevel * 1.2f);
+            KillsTillNextLevel = (int)(KillsTillNextLevel * 1.2f + 0.4f);
             player.UpdateColor(0f);
             //if (CurrentKills <= KillsTillNextLevel) _nextLevelText.color = Color.white;
             //_nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
