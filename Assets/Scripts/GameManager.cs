@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
         //DontDestroyOnLoad(gameObject);
         levels = new int[] { 1, 1, 1, 1 };
-        stats = new float[] { 1f, 1f, 1f, 0.7f };
+        stats = new float[] { 1f, 1.5f, 1f, 0.7f };
     }
 
     void Start()
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.Play("Upgrade");
             levels[index]++;
             CurrentKills -= KillsTillNextLevel;
-            KillsTillNextLevel = (int)(KillsTillNextLevel * 1.5f);
+            KillsTillNextLevel = (int)(KillsTillNextLevel * 1.2f);
             player.UpdateColor(0f);
             //if (CurrentKills <= KillsTillNextLevel) _nextLevelText.color = Color.white;
             //_nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                stats[index] *= 2.0f;
+                stats[index] *= 1.75f;
                 Debug.Log(index);
                 Debug.Log(stats[index]);
             }

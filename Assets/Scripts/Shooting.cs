@@ -13,11 +13,13 @@ public class Shooting : MonoBehaviour
     public float cooldown;
 
     private PlayerEffects playereff;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         playereff = GetComponentInParent<PlayerEffects>();
+        rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -43,8 +45,36 @@ public class Shooting : MonoBehaviour
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            Rigidbody2D rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+            Vector2 knockbackDir = new Vector2(dir.normalized.x,dir.normalized.y);
+            //StartCoroutine(MoveBackwards(rb.position - (knockbackDir * 1f),0.3f));
             playereff.muzzleFlash();
             StartCoroutine(playereff.shootSquashStretch(0.1f));
         }
+    }
+
+    public IEnumerator MoveBackwards(Vector3 targetPosition, float duration)
+    {
+        Vector3 startPosition = rb.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            // Calculate progress (0 to 1) based on elapsed time
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / duration;
+
+            // Interpolate position between start and target
+            Vector3 newPosition = Vector3.Lerp(startPosition, targetPosition, progress);
+
+            // Move the Rigidbody
+            rb.MovePosition(newPosition);
+
+            // Wait until the next frame
+            yield return null;
+        }
+
+        // Ensure the final position is exactly the target position
+        rb.MovePosition(targetPosition);
     }
 }
