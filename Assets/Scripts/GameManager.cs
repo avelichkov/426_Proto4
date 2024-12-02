@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             TimeOut();
         }
         float DisplayVal = Mathf.Round(_timer * 10) / 10;
-        _timerText.text = "Time: " + DisplayVal;
+        _timerText.text = /*"Time: " + */DisplayVal.ToString();
     }
 
     public void RestartGame()
