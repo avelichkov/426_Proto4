@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log(index);
                 Debug.Log(stats[index]);
             }
-            _stats[index].text = GetBar(levels[index]);
+            //_stats[index].text = GetBar(levels[index]);
         }
         ToggleUpgrades(false);
     }
