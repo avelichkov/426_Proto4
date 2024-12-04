@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class Wisp : MonoBehaviour, ICollectible
     public float speed = 5.0f;
     public float hoverAmplitude = 0.2f; // Hover animation amplitude
     public float hoverSpeed = 2.0f;     // Hover animation speed
-    public float combineRadius = 10.0f; // New radius (doubled from original)
+    public float combineRadius = 2.0f; // Combine radius
 
     public GameObject threeWispPrefab; // Reference to the new prefab
     private Rigidbody2D rb;
@@ -15,15 +16,19 @@ public class Wisp : MonoBehaviour, ICollectible
     private Vector3 targetPos;
     private Vector3 startPosition;
 
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Get SpriteRenderer component
         startPosition = transform.position;
     }
 
     private void Start()
     {
         InvokeRepeating(nameof(CheckForCombination), 0.5f, 0.5f); // Periodically check for combination
+        StartCoroutine(SelfDestructSequence()); // Start self-destruction countdown
     }
 
     private void FixedUpdate()
@@ -64,7 +69,6 @@ public class Wisp : MonoBehaviour, ICollectible
 
     private void CheckForCombination()
     {
-        // Find nearby wisps
         Collider2D[] nearbyWisps = Physics2D.OverlapCircleAll(transform.position, combineRadius);
         List<Wisp> wispsToCombine = new List<Wisp>();
 
@@ -77,7 +81,6 @@ public class Wisp : MonoBehaviour, ICollectible
             }
         }
 
-        // Combine if there are 2 others nearby
         if (wispsToCombine.Count >= 2)
         {
             CombineWisps(wispsToCombine);
@@ -85,29 +88,44 @@ public class Wisp : MonoBehaviour, ICollectible
     }
 
     private void CombineWisps(List<Wisp> wispsToCombine)
-{
-    // Calculate the average position for the new combined wisp
-    Vector3 averagePosition = transform.position;
-    foreach (Wisp wisp in wispsToCombine)
     {
-        averagePosition += wisp.transform.position;
+        Vector3 averagePosition = transform.position;
+        foreach (Wisp wisp in wispsToCombine)
+        {
+            averagePosition += wisp.transform.position;
+        }
+        averagePosition /= (wispsToCombine.Count + 1); // Include this wisp
+
+        Instantiate(threeWispPrefab, averagePosition, Quaternion.identity);
+
+        foreach (Wisp wisp in wispsToCombine)
+        {
+            Destroy(wisp.gameObject);
+        }
+        Destroy(this.gameObject);
     }
-    averagePosition /= (wispsToCombine.Count + 1); // Include this wisp
 
-    // Spawn the new "ThreeWisp" prefab before destroying anything
-    GameObject threeWisp = Instantiate(threeWispPrefab, averagePosition, Quaternion.identity);
-
-    // Ensure this wisp and nearby wisps are destroyed, but NOT the new prefab
-    foreach (Wisp wisp in wispsToCombine)
+    private IEnumerator SelfDestructSequence()
     {
-        Destroy(wisp.gameObject);
+        yield return new WaitForSeconds(6f); // Wait 3 seconds before starting visibility toggling
+
+        for (int i = 0; i < 3; i++)
+        {
+            // Toggle visibility off
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+
+            // Toggle visibility on
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        // Delete the Wisp after 3 seconds of blinking
+        Destroy(gameObject);
     }
-    Destroy(this.gameObject);
-}
 
     private void OnDrawGizmosSelected()
     {
-        // Visualize the combine radius in the Scene view
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, combineRadius);
     }
