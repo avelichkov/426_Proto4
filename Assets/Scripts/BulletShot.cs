@@ -15,7 +15,7 @@ public class BulletShot : MonoBehaviour
     void Start()
     {
         _health = (int)GameManager.stats[2];
-        transform.localScale *= 1 + ((_health - 1) * 0.5f);
+        //transform.localScale *= 1 + ((_health - 1) * 0.5f);
         AudioManager.instance.Play("Laser Shot");
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
