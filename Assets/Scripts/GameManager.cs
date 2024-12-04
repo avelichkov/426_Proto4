@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.Stop("Music");
         AudioManager.instance.Play("Game Over");
-        playereff.DeathEffects();
+        //playereff.DeathEffects();
         _score.color = Color.red;
         _score.text = "You Lose, you get nothing, good day sir.";
         StartCoroutine(GameOverEnum());

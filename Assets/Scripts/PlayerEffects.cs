@@ -14,6 +14,7 @@ public class PlayerEffects : MonoBehaviour
 
     public ParticleSystem gunflash;
 
+    /*
     public void DeathEffects()
     {
         AudioManager.instance.Play("Explosion");
@@ -21,6 +22,7 @@ public class PlayerEffects : MonoBehaviour
         explosion.transform.localScale = new Vector3(2, 2, 2);
         explosion.transform.localPosition += new Vector3(20, 20, 0);
     }
+    */
 
     public IEnumerator shootSquashStretch(float timeWaited)
     {
@@ -50,6 +52,7 @@ public class PlayerEffects : MonoBehaviour
         
     }
 
+    /*
     public void muzzleFlash()
     {
         //Vector3 shotAngle = 
@@ -58,5 +61,5 @@ public class PlayerEffects : MonoBehaviour
         gunflash.Play();
         
     }
-
+    */
 }

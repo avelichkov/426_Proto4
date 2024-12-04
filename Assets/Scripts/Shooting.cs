@@ -48,7 +48,7 @@ public class Shooting : MonoBehaviour
             Rigidbody2D rb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
             Vector2 knockbackDir = new Vector2(dir.normalized.x,dir.normalized.y);
             //StartCoroutine(MoveBackwards(rb.position - (knockbackDir * 1f),0.3f));
-            playereff.muzzleFlash();
+            //playereff.muzzleFlash();
             StartCoroutine(playereff.shootSquashStretch(0.1f));
         }
     }
