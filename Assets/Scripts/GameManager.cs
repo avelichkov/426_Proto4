@@ -147,15 +147,20 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.instance.Play("Kill");
     }
-    public void WispCollected()
+    public void WispCollected(int count = 1) // Default to 1 point
+{
+    AudioManager.instance.Play("Collect");
+    TotalKills += count; // Increment total kills by the given count
+    CurrentKills += count; // Increment current kills by the given count
+
+    player.UpdateColor((float)CurrentKills / KillsTillNextLevel);
+    if (CurrentKills >= KillsTillNextLevel)
     {
-        AudioManager.instance.Play("Collect");
-        TotalKills++;
-        if (KillsTillNextLevel > CurrentKills) CurrentKills++;
-        player.UpdateColor((float)CurrentKills/KillsTillNextLevel);
-        if (CurrentKills >= KillsTillNextLevel) ToggleUpgrades(true);
-        _score.text = TotalKills.ToString();
+        ToggleUpgrades(true); // Trigger upgrades if necessary
     }
+    _score.text = TotalKills.ToString(); // Update the UI score
+}
+
 
     public void GameOver()
     {

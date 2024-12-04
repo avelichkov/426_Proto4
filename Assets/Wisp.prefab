@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  combineRadius: 1
+  threeWispPrefab: {fileID: 6177348298072346067, guid: e6761d47d9a5b4dc1a7db17989252269, type: 3}
 --- !u!58 &8279062122673735795
 CircleCollider2D:
   m_ObjectHideFlags: 0
