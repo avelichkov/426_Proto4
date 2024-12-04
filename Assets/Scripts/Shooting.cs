@@ -30,7 +30,8 @@ public class Shooting : MonoBehaviour
         Vector3 dir = mousePos - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         //rotating the shooting direction
-        transform.parent.rotation = Quaternion.Euler(0, 0, angle);
+        if (!GameManager.instance._endTriggered){
+        transform.parent.rotation = Quaternion.Euler(0, 0, angle);}
         if (!canFire)
         {
             timer += Time.deltaTime;

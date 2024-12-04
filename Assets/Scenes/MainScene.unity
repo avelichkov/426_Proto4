@@ -326,6 +326,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341bb0c1381f81b4ab2b25d7112188e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &133126152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3304227254525518062, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+  m_PrefabInstance: {fileID: 702162276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &189249286 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8792684741311338454, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
@@ -375,15 +386,9 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Laser Shot
-    clip: {fileID: 8300000, guid: da72a9676800157449ecae6736c396a8, type: 3}
+    clip: {fileID: 8300000, guid: 03599f1124d393045af8165acceacc48, type: 3}
     volume: 0.3
     pitch: 0.5
-    loop: 0
-    source: {fileID: 0}
-  - name: Victory
-    clip: {fileID: 8300000, guid: bc907fbba496167478fac745a6f51943, type: 3}
-    volume: 0.75
-    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Kill
@@ -405,9 +410,39 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Collect
-    clip: {fileID: 8300000, guid: 5104e1805a6ca2f4d9e89e4da1881507, type: 3}
+    clip: {fileID: 8300000, guid: b16446c89cb013f4cbfa98abbd294153, type: 3}
     volume: 0.5
     pitch: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Victory0
+    clip: {fileID: 8300000, guid: 9afc62ca622447245af811d6cd61924f, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Victory1
+    clip: {fileID: 8300000, guid: 9a00e5378801eba4ab28baa16bef6c57, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Victory2
+    clip: {fileID: 8300000, guid: 85d0034dd0a05b04db96ab1ed1ea7ae5, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Victory3
+    clip: {fileID: 8300000, guid: bc907fbba496167478fac745a6f51943, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: a85349c80d617ee4cb94325752e43788, type: 3}
+    volume: 0.75
+    pitch: 1
     loop: 0
     source: {fileID: 0}
 --- !u!4 &226156973
@@ -425,6 +460,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285999261 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2122024693119099381, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+  m_PrefabInstance: {fileID: 702162276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &531139212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8083000118655803144, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+  m_PrefabInstance: {fileID: 702162276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &702162276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,6 +492,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PlusStat
       objectReference: {fileID: 0}
+    - target: {fileID: 1852315852806708509, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852315852806708509, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852315852806708509, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.11000357
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852315852806708509, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.13777146
+      objectReference: {fileID: 0}
     - target: {fileID: 2780776985657566558, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
       propertyPath: m_Name
       value: UI
@@ -456,6 +523,10 @@ PrefabInstance:
     - target: {fileID: 3988152695896404910, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080583211257971046, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_Name
+      value: UpgradeStats
       objectReference: {fileID: 0}
     - target: {fileID: 6299337597830493712, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
       propertyPath: m_Pivot.x
@@ -537,6 +608,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6525127117251676402, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 206
+      objectReference: {fileID: 0}
     - target: {fileID: 6984720210968241112, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -548,6 +623,10 @@ PrefabInstance:
     - target: {fileID: 6984720210968241112, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083000118655803144, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8233589290647684886, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -566,8 +645,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9037634630338677029, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+      propertyPath: m_Name
+      value: EndScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037634630338677029, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -619,6 +702,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1156644263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3101748399778422937, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+  m_PrefabInstance: {fileID: 702162276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1178910275
 GameObject:
   m_ObjectHideFlags: 0
@@ -5695,6 +5789,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1949822969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2154446961713899973, guid: 3fefb9b713e73bd409ba76e080fdc4c9, type: 3}
+  m_PrefabInstance: {fileID: 702162276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2144727841
 GameObject:
   m_ObjectHideFlags: 0
@@ -5726,12 +5831,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 1708563548}
   _upgrades: {fileID: 189249286}
+  _endScreen: {fileID: 531139212}
   _score: {fileID: 1826687146}
-  _stats:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _statsDisplay:
+  - {fileID: 285999261}
+  - {fileID: 133126152}
+  - {fileID: 1156644263}
+  - {fileID: 1949822969}
   _timerText: {fileID: 1715472617}
   playereff: {fileID: 129044520}
 --- !u!4 &2144727843

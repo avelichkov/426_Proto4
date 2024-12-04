@@ -28,12 +28,13 @@ public class GameManager : MonoBehaviour
 
     //All the UI Stuff
     [SerializeField] private GameObject _upgrades;
+    [SerializeField] private GameObject _endScreen;
     [SerializeField] private TextMeshProUGUI _score;
-    [SerializeField] private TextMeshProUGUI[] _stats;
+    [SerializeField] private TextMeshProUGUI[] _statsDisplay;
     [SerializeField] private TextMeshProUGUI _timerText;
     //[SerializeField] private TextMeshProUGUI _nextLevelText;
     private float _timer = 120f;
-    private bool _endTriggered = false;
+    public bool _endTriggered = false;
     private PlayerMove player;
 
     //Game feel stuff
@@ -158,12 +159,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        AudioManager.instance.Stop("Music");
-        AudioManager.instance.Play("Game Over");
+        //AudioManager.instance.Stop("Music");
+        //AudioManager.instance.Play("Game Over");
         //playereff.DeathEffects();
-        _score.color = Color.red;
-        _score.text = "You Lose, you get nothing, good day sir.";
-        StartCoroutine(GameOverEnum());
+        //_score.color = Color.red;
+        //_score.text = "You Lose, you get nothing, good day sir.";
+        player.GetComponent<SpriteRenderer>().color = Color.red;
+        AudioManager.instance.Play("Death");
+        StartCoroutine(TimeOutCR());
     }
 
     public void ToggleUpgrades(bool active)
@@ -179,28 +182,45 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-    public void TimeOut()
+    private IEnumerator TimeOutCR()
     {
         AudioManager.instance.Stop("Music");
-        AudioManager.instance.Play("Victory");
         Time.timeScale = 0.0f;
-        _timerText.color = Color.green;
-        //Camera.TriggerShake(2f);
         _endTriggered = true;
-        _score.text = "Kills: " + TotalKills;
-        if (TotalKills < 500)
+        yield return new WaitForSecondsRealtime(0.5f);
+        _endScreen.SetActive(true);
+        if (TotalKills < 200)
         {
-            _score.text += " | 1/3 Stars";
+            GameObject.Find("Star1").SetActive(false);
+            GameObject.Find("Star2").SetActive(false);
+            GameObject.Find("Star3").SetActive(false);
+            AudioManager.instance.Play("Victory0");
         }
-        else if (TotalKills < 750)
+        else if (TotalKills < 600)
         {
-            _score.text += " | 2/3 Stars";
+            GameObject.Find("Star2").SetActive(false);
+            GameObject.Find("Star3").SetActive(false);
+            AudioManager.instance.Play("Victory1");
+        }
+        else if (TotalKills < 1000)
+        {
+            GameObject.Find("Star3").SetActive(false);
+            AudioManager.instance.Play("Victory2");
         }
         else
         {
-            _score.text += " | 3/3 Stars!!!!";
+            AudioManager.instance.Play("Victory3");
         }
+        _statsDisplay[0].text = "Fire Rate: " + levels[0].ToString();
+        _statsDisplay[1].text = "Speed: " + levels[1].ToString();
+        _statsDisplay[2].text = "Damage: " + levels[2].ToString();
+        _statsDisplay[3].text = "Spawn Rate: " + levels[3].ToString();
+    }
+
+
+    public void TimeOut()
+    {
+        StartCoroutine(TimeOutCR());
     }
 
     private String GetBar(int level)
