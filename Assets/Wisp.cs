@@ -96,7 +96,7 @@ public class Wisp : MonoBehaviour, ICollectible
         }
         averagePosition /= (wispsToCombine.Count + 1); // Include this wisp
 
-        Instantiate(threeWispPrefab, averagePosition, Quaternion.identity);
+        if (threeWispPrefab != null) Instantiate(threeWispPrefab, averagePosition, Quaternion.identity);
 
         foreach (Wisp wisp in wispsToCombine)
         {
@@ -107,17 +107,17 @@ public class Wisp : MonoBehaviour, ICollectible
 
     private IEnumerator SelfDestructSequence()
     {
-        yield return new WaitForSeconds(6f); // Wait 3 seconds before starting visibility toggling
+        yield return new WaitForSeconds(5f); // Wait 3 seconds before starting visibility toggling
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 6; i++)
         {
             // Toggle visibility off
             spriteRenderer.enabled = false;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
 
             // Toggle visibility on
             spriteRenderer.enabled = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         }
 
         // Delete the Wisp after 3 seconds of blinking

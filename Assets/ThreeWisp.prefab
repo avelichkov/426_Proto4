@@ -129,6 +129,8 @@ MonoBehaviour:
   speed: 10
   hoverAmplitude: 0.2
   hoverSpeed: 8
+  combineRadius: 2
+  threeWispPrefab: {fileID: 0}
 --- !u!58 &7238789804860890515
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -295,6 +297,8 @@ MonoBehaviour:
   speed: 10
   hoverAmplitude: 0.2
   hoverSpeed: 8
+  combineRadius: 2
+  threeWispPrefab: {fileID: 0}
 --- !u!58 &8279062122673735795
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -459,6 +463,8 @@ MonoBehaviour:
   speed: 10
   hoverAmplitude: 0.2
   hoverSpeed: 8
+  combineRadius: 2
+  threeWispPrefab: {fileID: 0}
 --- !u!58 &5792642069727214546
 CircleCollider2D:
   m_ObjectHideFlags: 0

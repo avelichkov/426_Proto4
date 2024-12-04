@@ -121,23 +121,18 @@ public class GameManager : MonoBehaviour
             KillsTillNextLevel = (int)(KillsTillNextLevel * 1.2f + 0.4f);
             player.UpdateColor(0f);
             //if (CurrentKills <= KillsTillNextLevel) _nextLevelText.color = Color.white;
-            //_nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel;
-            if (index == 0 || index == 3)
-            {
-                Debug.Log(index);
-                Debug.Log(stats[index]);
+            //_nextLevelText.text = CurrentKills + "/" + KillsTillNextLevel
+
+            if (index == 0){
+                stats[index] *= 0.6f;
+            } else if (index == 1) {
+                stats[index] *= 1.7f;
+            } else if (index == 2) {
+                stats[index] *= 2f;
+            } else {
                 stats[index] *= 0.5f;
             }
-            else if (index == 2)
-            {
-                stats[index] += 1f;
-            }
-            else
-            {
-                stats[index] *= 1.75f;
-                Debug.Log(index);
-                Debug.Log(stats[index]);
-            }
+
             //_stats[index].text = GetBar(levels[index]);
         }
         ToggleUpgrades(false);
@@ -148,18 +143,20 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.Play("Kill");
     }
     public void WispCollected(int count = 1) // Default to 1 point
-{
-    AudioManager.instance.Play("Collect");
-    TotalKills += count; // Increment total kills by the given count
-    CurrentKills += count; // Increment current kills by the given count
-
-    player.UpdateColor((float)CurrentKills / KillsTillNextLevel);
-    if (CurrentKills >= KillsTillNextLevel)
     {
-        ToggleUpgrades(true); // Trigger upgrades if necessary
+        AudioManager.instance.Play("Collect");
+        TotalKills += count; // Increment total kills by the given count
+        if (CurrentKills < KillsTillNextLevel)
+        {
+            CurrentKills += count; // Increment current kills by the given count
+        }
+        player.UpdateColor((float)CurrentKills / KillsTillNextLevel);
+        if (CurrentKills >= KillsTillNextLevel)
+        {
+            ToggleUpgrades(true); // Trigger upgrades if necessary
+        }
+        _score.text = TotalKills.ToString(); // Update the UI score
     }
-    _score.text = TotalKills.ToString(); // Update the UI score
-}
 
 
     public void GameOver()
@@ -192,22 +189,23 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.Stop("Music");
         Time.timeScale = 0.0f;
         _endTriggered = true;
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.75f);
         _endScreen.SetActive(true);
-        if (TotalKills < 200)
+        //200, 500, 900, 
+        if (TotalKills < 150)
         {
             GameObject.Find("Star1").SetActive(false);
             GameObject.Find("Star2").SetActive(false);
             GameObject.Find("Star3").SetActive(false);
             AudioManager.instance.Play("Victory0");
         }
-        else if (TotalKills < 600)
+        else if (TotalKills < 500)
         {
             GameObject.Find("Star2").SetActive(false);
             GameObject.Find("Star3").SetActive(false);
             AudioManager.instance.Play("Victory1");
         }
-        else if (TotalKills < 1000)
+        else if (TotalKills < 900)
         {
             GameObject.Find("Star3").SetActive(false);
             AudioManager.instance.Play("Victory2");
