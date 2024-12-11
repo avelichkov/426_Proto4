@@ -28,7 +28,7 @@ public class Wisp : MonoBehaviour, ICollectible
     private void Start()
     {
         InvokeRepeating(nameof(CheckForCombination), 0.5f, 0.5f); // Periodically check for combination
-        StartCoroutine(SelfDestructSequence()); // Start self-destruction countdown
+        //StartCoroutine(SelfDestructSequence()); // Start self-destruction countdown
     }
 
     private void FixedUpdate()
@@ -107,7 +107,7 @@ public class Wisp : MonoBehaviour, ICollectible
 
     private IEnumerator SelfDestructSequence()
     {
-        yield return new WaitForSeconds(5f); // Wait 3 seconds before starting visibility toggling
+        yield return new WaitForSeconds(10f); // Wait 9 seconds before starting visibility toggling
 
         for (int i = 0; i < 6; i++)
         {

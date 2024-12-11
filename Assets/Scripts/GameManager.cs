@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
             if (index == 0){
                 stats[index] *= 0.6f;
             } else if (index == 1) {
-                stats[index] *= 1.7f;
+                stats[index] *= 1.75f;
             } else if (index == 2) {
                 stats[index] *= 2f;
             } else {
@@ -199,13 +199,13 @@ public class GameManager : MonoBehaviour
             GameObject.Find("Star3").SetActive(false);
             AudioManager.instance.Play("Victory0");
         }
-        else if (TotalKills < 500)
+        else if (TotalKills < 250)
         {
             GameObject.Find("Star2").SetActive(false);
             GameObject.Find("Star3").SetActive(false);
             AudioManager.instance.Play("Victory1");
         }
-        else if (TotalKills < 900)
+        else if (TotalKills < 350)
         {
             GameObject.Find("Star3").SetActive(false);
             AudioManager.instance.Play("Victory2");

@@ -200,7 +200,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 442085270443816761, guid: 3ed47858c34f11c479e22834574d92d6, type: 3}
       propertyPath: m_Radius
-      value: 20.23
+      value: 26.83
       objectReference: {fileID: 0}
     - target: {fileID: 528821900334923108, guid: 3ed47858c34f11c479e22834574d92d6, type: 3}
       propertyPath: m_TagString
@@ -5839,6 +5839,7 @@ MonoBehaviour:
   - {fileID: 1156644263}
   - {fileID: 1949822969}
   _timerText: {fileID: 1715472617}
+  _endTriggered: 0
   playereff: {fileID: 129044520}
 --- !u!4 &2144727843
 Transform:
